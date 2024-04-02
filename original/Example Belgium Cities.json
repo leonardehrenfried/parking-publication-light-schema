@@ -1,0 +1,119 @@
+{
+	"$schema": "DATEXII_3_D2Payload.json",
+	"_modelBaseVersion": "3",
+	"parkingPublicationLight": {
+		"lang": "cccccc",
+		"publicationTime": "2017-11-16T11:04:00+01:00",
+		"publicationCreator": {
+			"country": "BE",
+			"nationalIdentifier": "BE-CityParkings"
+		},
+		"name": "Belgium City Parkings",
+		"description": "A collection of parking information in Belgium cities",
+		"parkingSite": [
+			{
+			"_id": "E58319FB-7FB5-4625-B1D2-F942093C382F",
+			"lastUpdate": "2020-11-04T18:13:51+01:00",
+			"type": {"value":"offStreetParkingGround"},
+			"name": "CityPark1",
+			"description": "An offstreet parking ground in the city",
+			"equipmentAndServices": ["Public toilet"],
+			"security": ["Fence around, Staff"],
+			"openingTimesDescription": ["24 hours 7 days a week"],
+			"isOpenNow": true,
+			"temporaryClosed": false,
+			"operatorInformation": ["via city council"],
+			"tariffDescription": ["12 Euros / day"],
+			"freeParking": false,
+			"zoneDescription": ["is embedded in blue city zone"],
+			"urlLinkAddress": "http://www.cityparking.be",
+			"maximumParkingDuration": 604800,
+			"numberOfSpaces": 50,
+			"availableSpaces": 22,
+			"occupancyTrend": {"value":"decreasing"},
+			"assignedFor": [
+				{
+					"typeOfAssignment": {"value":"allowedFor"},
+					"vehicleType": {"value":"car"},
+					"fuelType": {"value":"all"},
+					"user": {"value":"allUsers"},
+					"availableSpaces": 10
+				},
+				{
+					"typeOfAssignment": {"value":"allowedFor"},
+					"vehicleType": {"value":"bus"},
+					"fuelType": {"value":"all"},
+					"user": {"value":"allUsers"},
+					"additionalAssignment": "no trailes",
+					"availableSpaces": 12
+				},
+				{
+					"typeOfAssignment": {"value":"prohibitedFor"},
+					"vehicleType": {"value":"lorry"}
+				}
+			],
+			"locationAndDimension": {
+				"locationDescriptor": "locationDescriptor0",
+				"specificAccessInformation": ["specificAccessInformation0"],
+				"level": "0",
+				"roadNumber": "E12",
+				"roadName": "Urban street",
+				"coordinatesForDisplay": {
+					"latitude": 50.88259,
+					"longitude": 4.75372
+				},
+				"gmlLinearRing": {
+					"posList": "50.88366 4.75353 50.88254 4.75171 50.88121 4.75342 50.88281 4.75629 50.88366 4.75353"
+				},
+				"dimension": {
+					"length": 50,
+					"orientationOfLengthAxis": 180,
+					"width": 110,
+					"height": 3,
+					"usableArea": 4300
+				}
+				}
+			}],
+			"parkingSpace": [{
+				"_id": "C26C714B-E5E0-4CA9-BA3F-96EABAB9139A",
+				"externalIdentifier": "P123",
+				"parkingSiteReference": {
+					"targetClass": "pal:ParkingSite",
+					"_id": "E58319FB-7FB5-4625-B1D2-F942093C382F"
+				},
+				"lastUpdate": "2020-11-04T18:13:51+01:00",
+				"accessibility": [{"value":"barrierFreeAccessible"}],
+				"maximumParkingDuration": 604800,
+				"availability": {"value":"available"},
+				"nextAvailableTimeSlot":  ["2020-11-04T18:13:51+01:00"],
+				"assignedFor": [{
+					"typeOfAssignment": {"value":"allowedFor"},
+					"vehicleType": {"value":"bus"},
+					"fuelType": {"value":"all"},
+					"user": {"value":"allUsers"},
+					"additionalAssignment": "home supporter bus only",
+					"availableSpaces": 1
+				}],
+				"locationAndDimension": {
+					"locationDescriptor": "first level next to Urban street",
+					"specificAccessInformation": ["take home supporter exit from main road"],
+					"level": "1",
+					"roadNumber": "E12",
+					"roadName": "Urban Street",
+					"coordinatesForDisplay": {
+						"latitude": 50.88345,
+						"longitude": 4.75422
+					},
+					"gmlLinearRing": {
+						"posList": "50.88346 4.75425 50.88338 4.75417 50.88337 4.75426 50.88345 4.75434 50.88346 4.75425"
+					},
+					"dimension": {
+						"length": 6,
+						"orientationOfLengthAxis": 105,
+						"width": 3,
+						"height": 3
+				    }
+			    }
+		}]
+	}
+}

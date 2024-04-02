@@ -1,0 +1,664 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "_AccessibilityEnum": {
+      "title": "_AccessibilityEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/AccessibilityEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_AssignmentTypeEnum": {
+      "title": "_AssignmentTypeEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/AssignmentTypeEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_AvailabilityEnum": {
+      "title": "_AvailabilityEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/AvailabilityEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_ParkingOccupancyTrendEnum": {
+      "title": "_ParkingOccupancyTrendEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/ParkingOccupancyTrendEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_ParkingSiteReference": {
+      "title": "_ParkingSiteReference",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "ParkingSite"
+        }
+      },
+      "required": [
+        "targetClass"
+      ],
+      "allOf": [
+        {
+          "$ref": "DATEXII_3_Common.json#/definitions/Reference"
+        }
+      ]
+    },
+    "_ParkingSiteTypeEnum": {
+      "title": "_ParkingSiteTypeEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/ParkingSiteTypeEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_UserTypeEnum": {
+      "title": "_UserTypeEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/UserTypeEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "AccessibilityEnum": {
+      "title": "AccessibilityEnum",
+      "description": "Special forms of accessibility,easements and marking for handicapped people.",
+      "type": "string",
+      "enum": [
+        "barrierFreeAccessible",
+        "handicappedAccessible",
+        "wheelChairAccessible",
+        "handicappedEasements",
+        "orientationSystemForBlindPeople",
+        "handicappedMarked",
+        "none",
+        "unknown",
+        "other",
+        "_extended"
+      ]
+    },
+    "Assignment": {
+      "title": "Assignment",
+      "description": "An assignment for a parking site or a parking space. Might be including or excluding, depending on typeOfAssignment.",
+      "type": "object",
+      "properties": {
+        "typeOfAssignment": {
+          "title": "typeOfAssignment",
+          "description": "Defines, if this assignment is of including or excluding nature.",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/_AssignmentTypeEnum"
+        },
+        "vehicleType": {
+          "title": "vehicleType",
+          "description": "The vehicle type this assignment refers to.",
+          "$ref": "DATEXII_3_Common.json#/definitions/_VehicleTypeEnum"
+        },
+        "fuelType": {
+          "title": "fuelType",
+          "description": "The type of fuel this assignment refers to.",
+          "$ref": "DATEXII_3_Common.json#/definitions/_FuelTypeEnum"
+        },
+        "user": {
+          "title": "user",
+          "description": "A user this assignment refers to.",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/_UserTypeEnum"
+        },
+        "additionalAssignment": {
+          "title": "additionalAssignment",
+          "description": "An additional assignment in natural language.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "availableSpaces": {
+          "title": "availableSpaces",
+          "description": "The total number of currently vacant parking spaces within this site for the given assignment. (e.g. for lorries). Use only with type of assignment = 'optimised' or 'allowed'. Do not use when describing a single parking space.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "_assignmentExtension": {
+          "title": "_assignmentExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "typeOfAssignment"
+      ]
+    },
+    "AssignmentTypeEnum": {
+      "title": "AssignmentTypeEnum",
+      "description": "Including or excluding parameters for assignments.",
+      "type": "string",
+      "enum": [
+        "allowedFor",
+        "onlyFor",
+        "optimisedFor",
+        "prohibitedFor",
+        "_extended"
+      ]
+    },
+    "AvailabilityEnum": {
+      "title": "AvailabilityEnum",
+      "description": "Information if a parking space is closed, available or occupied.",
+      "type": "string",
+      "enum": [
+        "available",
+        "closed",
+        "occupied",
+        "unknown",
+        "_extended"
+      ]
+    },
+    "Coordinate": {
+      "title": "Coordinate",
+      "description": "A pair of planar coordinates defining the geodetic position of a single point using the European Terrestrial Reference System 1989 (ETRS89).",
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "title": "latitude",
+          "description": "Latitude in decimal degrees using the European Terrestrial Reference System 1989 (ETRS89).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Float"
+        },
+        "longitude": {
+          "title": "longitude",
+          "description": "Longitude in decimal degrees using the European Terrestrial Reference System 1989 (ETRS89).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Float"
+        },
+        "_coordinateExtension": {
+          "title": "_coordinateExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ]
+    },
+    "Dimension": {
+      "title": "Dimension",
+      "description": "A component that provides dimension information. The product of width and height must not be necessarily be the square footage (e.g. in multi-storey buildings or when some zones are not part of the square footage).",
+      "type": "object",
+      "properties": {
+        "length": {
+          "title": "length",
+          "description": "Length.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "orientationOfLengthAxis": {
+          "title": "orientationOfLengthAxis",
+          "description": "The orientation of the length axis in degree. In the case of a parking space, this corresponds to the direction, in which a vehicle is parked.",
+          "$ref": "DATEXII_3_Common.json#/definitions/AngleInDegrees"
+        },
+        "width": {
+          "title": "width",
+          "description": "Width.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "height": {
+          "title": "height",
+          "description": "Height.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsFloat"
+        },
+        "usableArea": {
+          "title": "usableArea",
+          "description": "The area measured in square metres, that is available for some specific purpose.",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/SquareMetres"
+        },
+        "_dimensionExtension": {
+          "title": "_dimensionExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      }
+    },
+    "LocationAndDimension": {
+      "title": "LocationAndDimension",
+      "description": "Location",
+      "type": "object",
+      "properties": {
+        "locationDescriptor": {
+          "title": "locationDescriptor",
+          "description": "Supplementary human-readable description of the location",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "specificAccessInformation": {
+          "title": "specificAccessInformation",
+          "description": "Information on one specific access (entrance or exit) in human readable text, for example the corresponding road where it is located.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "level": {
+          "title": "level",
+          "description": "The level of the parking space (0 = ground etc.), or the first level of the entire parking site (for example, if a parking site is located on the roof of a building).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Integer"
+        },
+        "roadNumber": {
+          "title": "roadNumber",
+          "description": "The road number designated by the road authority",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "roadName": {
+          "title": "roadName",
+          "description": "Information on a road",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "coordinatesForDisplay": {
+          "title": "coordinatesForDisplay",
+          "description": "Coordinates that may be used by clients for visual display on user interfaces.",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/Coordinate"
+        },
+        "gmlLinearRing": {
+          "title": "gmlLinearRing",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlLinearRing"
+        },
+        "dimension": {
+          "title": "dimension",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/Dimension"
+        },
+        "_locationAndDimensionExtension": {
+          "title": "_locationAndDimensionExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "coordinatesForDisplay"
+      ]
+    },
+    "ParkingOccupancyTrendEnum": {
+      "title": "ParkingOccupancyTrendEnum",
+      "description": "List of terms used to describe the trend in parking space occupancy.",
+      "type": "string",
+      "enum": [
+        "decreasing",
+        "increasing",
+        "stable",
+        "increasingQuickly",
+        "increasingSlowly",
+        "decreasingQuickly",
+        "decreasingSlowly",
+        "unknown",
+        "other",
+        "_extended"
+      ]
+    },
+    "ParkingPublicationLight": {
+      "title": "ParkingPublicationLight",
+      "description": "A simplified publication to transfer parking information.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "name",
+          "description": "The name of the parking light publication.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description for the parking light publication.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "parkingSite": {
+          "title": "parkingSite",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/ParkingSite"
+          },
+          "minItems": 0
+        },
+        "parkingSpace": {
+          "title": "parkingSpace",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/ParkingSpace"
+          },
+          "minItems": 0
+        },
+        "_parkingPublicationLightExtension": {
+          "title": "_parkingPublicationLightExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "DATEXII_3_Common.json#/definitions/PayloadPublication"
+        }
+      ]
+    },
+    "ParkingSite": {
+      "title": "ParkingSite",
+      "description": "A collection of parking spaces within a building, an open ground or some on street area. Usually seen as one entity and manged as such.",
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "lastUpdate": {
+          "title": "lastUpdate",
+          "description": "Last update time of this parking site information.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "type": {
+          "title": "type",
+          "description": "Type of this parking site.",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/_ParkingSiteTypeEnum"
+        },
+        "name": {
+          "title": "name",
+          "description": "Name for this parking site.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description for this parking site.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "equipmentAndServices": {
+          "title": "equipmentAndServices",
+          "description": "Equipment and services available at this parking site, described in natural language.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "security": {
+          "title": "security",
+          "description": "Security aspects at this parking site, described in natural language.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "openingTimesDescription": {
+          "title": "openingTimesDescription",
+          "description": "Opening times of this parking site, described in natural language.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "isOpenNow": {
+          "title": "isOpenNow",
+          "description": "True, if the parking site is open right now.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "temporaryClosed": {
+          "title": "temporaryClosed",
+          "description": "True, if the parking site is closed ignoring its regular opening times, for example due to maintenance or constructions.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "operatorInformation": {
+          "title": "operatorInformation",
+          "description": "Information about the operator of this parking site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "tariffDescription": {
+          "title": "tariffDescription",
+          "description": "Information about the parking-tariffs in natural language.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "freeParking": {
+          "title": "freeParking",
+          "description": "If true, parking is free at this site.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "zoneDescription": {
+          "title": "zoneDescription",
+          "description": "A description of some specific zone this parking site might belong to,",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "urlLinkAddress": {
+          "title": "urlLinkAddress",
+          "description": "A Uniform Resource Locator (URL) address pointing to a resource available on the Internet from where further relevant information may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "maximumParkingDuration": {
+          "title": "maximumParkingDuration",
+          "description": "The maximum parking duration for this parking site.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "numberOfSpaces": {
+          "title": "numberOfSpaces",
+          "description": "The total number of parking spaces at this site, not including closed spaces (due to maintenance, for example).",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "availableSpaces": {
+          "title": "availableSpaces",
+          "description": "The total number of currently vacant parking spaces available in the specified parking site.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "occupancyTrend": {
+          "title": "occupancyTrend",
+          "description": "The trend of the occupancy of the parking spaces in the specified parking site.",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/_ParkingOccupancyTrendEnum"
+        },
+        "assignedFor": {
+          "title": "assignedFor",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/Assignment"
+          },
+          "minItems": 0
+        },
+        "locationAndDimension": {
+          "title": "locationAndDimension",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/LocationAndDimension"
+        },
+        "_parkingSiteExtension": {
+          "title": "_parkingSiteExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "_id",
+        "type",
+        "locationAndDimension"
+      ]
+    },
+    "ParkingSiteTypeEnum": {
+      "title": "ParkingSiteTypeEnum",
+      "description": "Type of the parking site.",
+      "type": "string",
+      "enum": [
+        "carPark",
+        "onStreet",
+        "offStreetParkingGround",
+        "motorwayParking",
+        "restArea",
+        "temporaryParking",
+        "specialLocationParking",
+        "other",
+        "_extended"
+      ]
+    },
+    "ParkingSpace": {
+      "title": "ParkingSpace",
+      "description": "A parking space, i.e. a single slot for one vehicle. Includes dynamic information if it is available or not.",
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "description": "An external identifier for this parking space, e.g. \"R145\"",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "parkingSiteReference": {
+          "title": "parkingSiteReference",
+          "description": "A reference to a parking site this parking space belongs to.",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/_ParkingSiteReference"
+        },
+        "lastUpdate": {
+          "title": "lastUpdate",
+          "description": "Point of time of the latest update of this information.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "accessibility": {
+          "title": "accessibility",
+          "description": "Information on accessibility, easements and marking for handicapped people.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/_AccessibilityEnum"
+          },
+          "minItems": 0
+        },
+        "maximumParkingDuration": {
+          "title": "maximumParkingDuration",
+          "description": "The maximum parking duration for this parking space.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "availability": {
+          "title": "availability",
+          "description": "Information if this space is closed, available or occupied.",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/_AvailabilityEnum"
+        },
+        "nextAvailableTimeSlot": {
+          "title": "nextAvailableTimeSlot",
+          "description": "In case there is a reservation or time management: Point of time this space will be available for usage.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+          },
+          "minItems": 0
+        },
+        "assignedFor": {
+          "title": "assignedFor",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/Assignment"
+          },
+          "minItems": 0
+        },
+        "locationAndDimension": {
+          "title": "locationAndDimension",
+          "$ref": "DATEXII_3_ParkingPublicationLight.json#/definitions/LocationAndDimension"
+        },
+        "_parkingSpaceExtension": {
+          "title": "_parkingSpaceExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "_id",
+        "availability",
+        "locationAndDimension"
+      ]
+    },
+    "SquareMetres": {
+      "title": "SquareMetres",
+      "description": "Square metres.",
+      "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+    },
+    "UserTypeEnum": {
+      "title": "UserTypeEnum",
+      "description": "Types of users; used for parking but also for usage of equipment and services.",
+      "type": "string",
+      "enum": [
+        "allUsers",
+        "shoppers",
+        "hotelGuests",
+        "subscribers",
+        "reservationHolders",
+        "seasonTicketHolders",
+        "registeredDisabledUsers",
+        "disabled",
+        "handicapped",
+        "hearingImpaired",
+        "visuallyImpaired",
+        "wheelchairUsers",
+        "elderlyUsers",
+        "families",
+        "men",
+        "women",
+        "pregnantWomen",
+        "pensioners",
+        "students",
+        "staff",
+        "employees",
+        "customers",
+        "visitors",
+        "members",
+        "shortTermParker",
+        "longTermParker",
+        "overnightParker",
+        "sportEventAwaySupporters",
+        "sportEventHomeSupporters",
+        "residents",
+        "commuters",
+        "parkAndRideUsers",
+        "parkAndWalkUser",
+        "parkAndCycleUser",
+        "unknown",
+        "other",
+        "_extended"
+      ]
+    }
+  }
+}
