@@ -18,8 +18,8 @@ deduplicate:
 	node duplicate-allof.js
 
 docs: deduplicate
-	mkdir -p html
-	generate-schema-doc draft7 html
+	mkdir -p docs
+	generate-schema-doc draft7 docs
 
 clean:
 	rm -rf draft6 draft7 combined
