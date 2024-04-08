@@ -14,10 +14,13 @@ draft7/%.json: draft6/%.json
 
 migrate: $(OBJS6) $(OBJS7)
 
-docs: migrate
+deduplicate:
+	node duplicate-allof.js
+
+docs: deduplicate
 	mkdir -p html
 	generate-schema-doc draft7 html
 
 clean:
-	rm -rf draft6 draft7
+	rm -rf draft6 draft7 combined
 

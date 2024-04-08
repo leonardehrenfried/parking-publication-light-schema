@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {
+    "_GmlLineString": {
+      "title": "_GmlLineString",
+      "type": "object",
+      "properties": {
+        "gmlLinearRing": {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlLinearRing"
+        }
+      }
+    },
+    "GmlLinearRing": {
+      "title": "GmlLinearRing",
+      "description": "Closed line string not self-intersecting (i.e. having as last point the first point)",
+      "type": "object",
+      "properties": {
+        "_gmlLinearRingExtension": {
+          "title": "_gmlLinearRingExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlLineString"
+        }
+      ]
+    },
+    "GmlLineString": {
+      "title": "GmlLineString",
+      "description": "Line string based on GML (EN ISO 19136) definition: a curve defined by a series of two or more coordinate tuples. Unlike GML may be self-intersecting. If srsName attribute is not present, posList is assumed to use \"ETRS89-LatLonh\" reference system.",
+      "type": "object",
+      "properties": {
+        "posList": {
+          "title": "posList",
+          "description": "List of coordinate Tuples define the geometry of this GmlLineString. There must be at least 2 Tuples of coordinates.",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/GmlPosList"
+        },
+        "_gmlLineStringExtension": {
+          "title": "_gmlLineStringExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "posList"
+      ]
+    },
+    "GmlPosList": {
+      "title": "GmlPosList",
+      "description": "List of coordinates, space-separated, within the same coordinate reference system, defining a geometric entity. Modelled on DirectPositionListType in GML (EN ISO 19136), but constrained to represent a 2D or 3D polyline.",
+      "$ref": "DATEXII_3_Common.json#/definitions/LongString"
+    }
+  }
+}
